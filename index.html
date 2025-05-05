@@ -1,0 +1,226 @@
+<!-- Based on Build a Modern Landing Page Website by Kevin Powell for Traversy Media (2020)
+see: https://www.youtube.com/watch?v=X1dz0xRbSJc -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Great Sneakers Inc.</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Bare Foot</div>
+      <ul class="nav-links">
+          <li><a >Home</a></li>
+          <li><a >Products</a></li>
+          <li><a >Discription</a></li>
+          <li><a >Contact</a></li>
+      </ul>
+      <div class="menu-toggle">&#9776;</div>
+  </nav>
+    <header class="hero">
+      <div class="container spacing">
+        <h1 class="primary-title">It's okay to be a little obsessed with shoes</h1>
+        <p>
+          Step into a world of style and performance with our premium collection of sneakers. Designed for comfort, durability, and trendsetting fashion, our footwear blends cutting-edge technology with sleek aesthetics to keep you moving effortlessly. 
+        </p>
+        <a href="#" class="btn">See what we have</a>
+      </div>
+    </header>
+    <!-- Chatbot Button -->
+    <button id="chatbot-button">👟</button>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            Sneaker Bot 🏀🔥
+            <span id="chatbot-close" style="float:right; cursor:pointer;">❌</span>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+    <main>
+      <section class="featured">
+        <div class="container">
+          <h2 class="section-title">Premium casual shoes</h2>
+          <div class="split">
+            <a href="#" class="featured__item">
+              <img
+                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-4.png?raw=true"
+                alt=""
+                class="featured__img"
+              />
+              <p class="featured__details">
+                <span class="price">Rs.2000</span>Adidas Stan Smith
+              </p>
+            </a>
+            <a href="#" class="featured__item">
+              <img
+                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-5.png?raw=true"
+                alt=""
+                class="featured__img"
+              />
+              <p class="featured__details">
+                <span class="price">Rs.3000</span>Air Jordan 1
+              </p>
+            </a>
+            <a href="#" class="featured__item">
+              <img
+                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-6.png?raw=true"
+                alt=""
+                class="featured__img"
+              />
+              <p class="featured__details">
+                <span class="price">Rs.5000</span>Chuck Taylor All Star
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="our-products">
+        <div class="container">
+          <h2 class="section-title">Our Collection</h2>
+          <article class="product shoe-red spacing">
+            <img
+              src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-1.png?raw=true"
+              alt=""
+              class="product__image"
+            />
+            <h3 class="product__title">A really nice shoe</h3>
+            <p class="product__description">
+              Whether you're running, training, or just strolling, our shoes blend performance and fashion to match your active lifestyle.
+            </p>
+            <a href="" class="btn">Buy now</a>
+          </article>
+
+          <article class="product shoe-white shoe-left spacing">
+            <img
+              src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-2.png?raw=true"
+              alt=""
+              class="product__image"
+            />
+            <h3 class="product__title">A really nice shoe</h3>
+            <p class="product__description">
+              Experience unmatched comfort and style with our premium footwear, designed to keep you moving effortlessly every day.
+            </p>
+            <a href="" class="btn">Buy now</a>
+          </article>
+
+          <article class="product shoe-blue spacing">
+            <img
+              src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-3.png?raw=true"
+              alt=""
+              class="product__image"
+            />
+            <h3 class="product__title">A really nice shoe</h3>
+            <p class="product__description">
+              Crafted with precision and care, our shoes provide cloud-like comfort and the perfect fit for every adventure
+            </p>
+            <a href="" class="btn">Buy now</a>
+          </article>
+        </div>
+      </section>
+      
+      <footer>
+        <p>&copy; 2025 Your Company. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+    </main>
+    <script>
+        document.getElementById("chatbot-button").addEventListener("click", function() {
+            document.getElementById("chatbot-container").style.display = "block";
+        });
+
+        document.getElementById("chatbot-close").addEventListener("click", function() {
+            document.getElementById("chatbot-container").style.display = "none";
+        });
+
+        function appendMessage(text, className) {
+            const messagesContainer = document.getElementById("chatbot-messages");
+            const messageElement = document.createElement("div");
+            messageElement.textContent = text;
+            messageElement.classList.add("message", className);
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function appendProduct(product) {
+            const messagesContainer = document.getElementById("chatbot-messages");
+            const productElement = document.createElement("div");
+            productElement.classList.add("product-message");
+            productElement.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p><strong>${product.name}</strong></p>
+                <p>Price: ${product.price}</p>
+                <a href="${product.link}" target="_blank">
+                    <button style="background:#ff3e3e;color:white;padding:5px;border:none;border-radius:5px;cursor:pointer;">
+                        Buy Now
+                    </button>
+                </a>
+            `;
+            messagesContainer.appendChild(productElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getSneakerRecommendation(preference) {
+            const sneakers = {
+                "basketball": { 
+                    name: "Nike LeBron 21", 
+                    price: "$200", 
+                    image: "https://via.placeholder.com/150", 
+                    link: "https://www.nike.com" 
+                },
+                "running": { 
+                    name: "Adidas Ultraboost", 
+                    price: "$180", 
+                    image: "https://via.placeholder.com/150", 
+                    link: "https://www.adidas.com" 
+                },
+                "casual": { 
+                    name: "Puma RS-X", 
+                    price: "$120", 
+                    image: "https://via.placeholder.com/150", 
+                    link: "https://www.puma.com" 
+                }
+            };
+            return sneakers[preference] || sneakers["casual"];
+        }
+
+        async function handleUserInput() {
+            const inputField = document.getElementById("chatbot-input");
+            const userMessage = inputField.value.trim().toLowerCase();
+            if (!userMessage) return;
+
+            appendMessage("You: " + userMessage, "user-message");
+            inputField.value = "";
+
+            if (userMessage.includes("hi") || userMessage.includes("hello")) {
+                appendMessage("Bot: Hey there! Looking for sneakers? What style do you prefer – basketball, running, or casual? 👟", "bot-message");
+            } else if (userMessage.includes("basketball") || userMessage.includes("running") || userMessage.includes("casual")) {
+                const sneaker = getSneakerRecommendation(userMessage);
+                appendMessage("Bot: I recommend the " + sneaker.name + "! 🔥", "bot-message");
+                appendProduct(sneaker);
+            } else {
+                appendMessage("Bot: Not sure what you mean. Try 'basketball', 'running', or 'casual'! 🤔", "bot-message");
+            }
+        }
+
+        document.getElementById("chatbot-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                handleUserInput();
+            }
+        });
+
+        document.getElementById("send-button").addEventListener("click", handleUserInput);
+    </script>
+  </body>
+</html>
